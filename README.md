@@ -2,9 +2,9 @@
 
 支持所有原生PDO功能，并作了相应的扩展。
 
-1.支持懒连接
-2.提供 Connection 管理主从
-3.提供简单的 Query builder
+1.支持懒连接  
+2.提供 Connection 管理主从  
+3.提供简单的 Query builder  
 
 [![Build Status](https://travis-ci.org/yumancang/Database.svg?branch=master)](https://travis-ci.org/yumancang/Database)
 
