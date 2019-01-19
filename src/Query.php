@@ -41,7 +41,7 @@ class Query
      * @param string $statement
      * @return Query
      */
-    public function select($statement)
+    public function select($statement = '*')
     {
         $this->select[] = $statement;
 

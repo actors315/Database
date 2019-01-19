@@ -359,7 +359,7 @@ class DB extends \PDO
      * @param array $where_params
      * @return Statement|\PDOStatement
      */
-    protected function executeBySyntax($syntax, $table, $data, $where = null, $where_params = array())
+    protected function executeBySyntax($syntax, $table, $data, $where = null, $where_params = [])
     {
         if (!is_null($where) && !is_array($where)) {
             $where = array($where);
