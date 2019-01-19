@@ -1,0 +1,17 @@
+{
+  "name": "Twinkle/Database",
+  "description": "基于PDO的数据库扩展，支持主从、懒连接",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Twinkle\\Database": "src/"
+    }
+  }
+}

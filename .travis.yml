@@ -1,0 +1,17 @@
+language: php
+php:
+  - '5.6'
+  - '7.2'
+
+# 项目所在分支
+branches:
+  only:
+  - master
+
+install:
+  - composer install --prefer-dist --optimize-autoloader --quiet
+
+script:
+  - ./vendor/bin/phpunit --coverage-clover=coverage.clover
+
+
