@@ -1,5 +1,5 @@
 {
-  "name": "Twinkle/Database",
+  "name": "twinkle/database",
   "description": "基于PDO的数据库扩展，支持主从、懒连接",
   "type": "library",
   "license": "MIT",
