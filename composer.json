@@ -11,7 +11,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Twinkle\\Database": "src/"
+      "Twinkle\\Database\\": "src/"
     }
   }
 }
