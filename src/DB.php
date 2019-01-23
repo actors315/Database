@@ -27,7 +27,7 @@ class DB extends \PDO
 
     public $dsn;
     public $username;
-    public $password;
+    public $password = '';
     public $options = [];
 
     public $exception_callback;

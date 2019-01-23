@@ -36,8 +36,8 @@ class DBTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        if (!extension_loaded('pdo_sqlite')) {
-            $this->markTestSkipped("Need 'pdo_sqlite' to test in memory.");
+        if (!extension_loaded('pdo_mysql')) {
+            $this->markTestSkipped("Need 'pdo_mysql' extension to test mysql.");
         }
         $this->db = $this->newDb();
         $this->createTable();
@@ -50,7 +50,8 @@ class DBTest extends \PHPUnit_Framework_TestCase
     protected function newDb()
     {
         return new DB([
-            'dsn' => 'sqlite::memory:',
+            'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=twinkle_test',
+            'username' => 'root',
         ]);
     }
 
@@ -66,21 +67,15 @@ class DBTest extends \PHPUnit_Framework_TestCase
     protected function fillTable()
     {
         foreach ($this->data as $id => $name) {
-            $this->insert(['name' => $name]);
+            $this->db->insert('db_test',['name' => $name]);
         }
     }
 
-    protected function insert(array $data)
+    public function testInsert()
     {
-        $cols = array_keys($data);
-        $vals = [];
-        foreach ($cols as $col) {
-            $vals[] = ":$col";
-        }
-        $cols = implode(', ', $cols);
-        $vals = implode(', ', $vals);
-        $sql = "INSERT INTO db_test ({$cols}) VALUES ({$vals})";
-        $this->db->execQueryString($sql, $data);
+        $stm = $this->db->insert('db_test',['name' => 'testInsert']);
+        $affectedCount = $stm->rowCount();
+        $this->assertEquals(1, $affectedCount);
     }
 
     public function testExecQuery()
