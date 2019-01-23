@@ -57,9 +57,10 @@ class DBTest extends \PHPUnit_Framework_TestCase
 
     protected function createTable()
     {
-        $sql = "CREATE TABLE db_test (
-            id   INTEGER PRIMARY KEY AUTOINCREMENT,
-            name VARCHAR(10) NOT NULL
+        $sql = "CREATE TABLE `db_test` (
+            `id`  int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增ID' ,
+            `name`  varchar(32) NOT NULL DEFAULT '' COMMENT '名称' ,
+            PRIMARY KEY (`id`)
         )";
         $this->db->execQueryString($sql);
     }
