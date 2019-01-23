@@ -57,7 +57,9 @@ class DBTest extends \PHPUnit_Framework_TestCase
 
     protected function createTable()
     {
-        $sql = "CREATE TABLE `db_test` (
+        $sql = "
+        DROP TABLE IF EXISTS db_test;
+        CREATE TABLE `db_test` (
             `id`  int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增ID' ,
             `name`  varchar(32) NOT NULL DEFAULT '' COMMENT '名称' ,
             PRIMARY KEY (`id`)
@@ -72,13 +74,6 @@ class DBTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testInsert()
-    {
-        $stm = $this->db->insert('db_test',['name' => 'testInsert']);
-        $affectedCount = $stm->rowCount();
-        $this->assertEquals(1, $affectedCount);
-    }
-
     public function testExecQuery()
     {
         $stm = $this->db->execQuery(
@@ -89,6 +84,13 @@ class DBTest extends \PHPUnit_Framework_TestCase
         $expect = 10;
         $actual = count($result);
         $this->assertEquals($expect, $actual);
+    }
+
+    public function testInsert()
+    {
+        $stm = $this->db->insert('db_test',['name' => 'testInsert']);
+        $affectedCount = $stm->rowCount();
+        $this->assertEquals(1, $affectedCount);
     }
 
 }
