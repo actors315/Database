@@ -7,6 +7,7 @@
  */
 
 namespace Twinkle\Database;
+use Twinkle\Database\Exception\NotFoundException;
 
 /**
  * 一般情况下，优秀的项目都不只一个db。
@@ -76,22 +77,22 @@ class Connection
     protected function getConnection($type, $index = null)
     {
         if (!isset($this->registry[$type])) {
-            throw new \Exception('数据库连接不存在');
+            throw new NotFoundException('连接类型不存在');
         }
 
         if ('write' == $type) {
             $connection = $this->registry[$type];
-        } elseif ('read' == $type) {
+        } else {
             if (empty($this->registry[$type])) {
                 $connection = $this->registry['write'];
             } elseif (null == $index) {
                 $index = array_rand($this->registry[$type]);
                 $connection = $this->registry[$type][$index];
-            } else {
+            } elseif(isset($this->registry[$type][$index])) {
                 $connection = $this->registry[$type][$index];
+            } else {
+                throw new NotFoundException('连接不存在');
             }
-        } else {
-            throw new \Exception('数据库连接不存在');
         }
 
         if ($connection instanceof DB) {
