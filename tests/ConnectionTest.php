@@ -57,7 +57,8 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
     public function testGetWrite()
     {
         $connection = $this->newConnection();
-        $this->assertEquals($this->master, $connection->getWrite());
+        $expect = call_user_func($this->master);
+        $this->assertEquals($expect, $connection->getWrite());
         $this->assertInstanceOf(DB::class, $connection->getWrite());
     }
 
@@ -81,7 +82,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         ];
         for ($i = 1; $i <= 10; $i++) {
             $actual = $connection->getRead();
-            $this->assertTrue(in_array($actual, $expect, true));
+            $this->assertTrue(in_array($actual, $expect));
         }
     }
 
