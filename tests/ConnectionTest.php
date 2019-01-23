@@ -58,6 +58,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
     {
         $connection = $this->newConnection();
         $this->assertEquals($this->master, $connection->getWrite());
+        $this->assertInstanceOf(DB::class, $connection->getWrite());
     }
 
     public function testGetRead()
