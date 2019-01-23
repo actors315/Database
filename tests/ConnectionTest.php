@@ -77,12 +77,12 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $expect1 = call_user_func($this->slaves['slave1']);
         $expect2 = call_user_func($this->slaves['slave2']);
         $expect = [
-            $expect1,
-            $expect2
+            $expect1->username,
+            $expect2->username,
         ];
         for ($i = 1; $i <= 10; $i++) {
             $actual = $connection->getRead();
-            $this->assertTrue(in_array($actual, $expect));
+            $this->assertTrue(in_array($actual->username, $expect));
         }
     }
 
