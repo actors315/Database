@@ -210,7 +210,7 @@ class DB extends \PDO
      *
      * @param string $sql
      * @param null | array $params
-     * @return \PDOStatement
+     * @return Statement | \PDOStatement
      */
     public function execQueryString($sql, $params = null)
     {
